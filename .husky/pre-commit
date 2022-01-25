@@ -3,5 +3,5 @@
 
 npx lint-staged
 npm run test:staged
-git add coverage/*
+git add coverage/.
 git add .eslintcache

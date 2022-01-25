@@ -16,5 +16,6 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }]
     }
 }

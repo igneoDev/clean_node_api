@@ -4,7 +4,7 @@ export default {
 
   collectCoverage: true,
 
-  collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!<rootDir>/src/*/contracts/*.ts'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
 
   coverageDirectory: 'coverage',
 

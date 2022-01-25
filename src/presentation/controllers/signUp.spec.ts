@@ -2,18 +2,38 @@ import { SignUpController } from './signUp'
 import { EmailValidator } from '../contracts'
 import { MissingParamError, InvalidParamError, ServerError } from '../errors'
 
+// testar comportamentos da classe SignUpController
+// testar dependências da classe SignUpController (emailValidator)
+// testar integração da classe SignUpController com as dependências (emailValidator)
+
+// SOLID used: S I D
+// Patterns user: factory
+
 interface SutTypes {
   sut: SignUpController,
   emailValidatorStub: EmailValidator
 }
 
-const makeSut = (): SutTypes => {
+const makeEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
     isValid (email: string): boolean {
       return true
     }
   }
-  const emailValidatorStub = new EmailValidatorStub()
+  return new EmailValidatorStub()
+}
+
+const makeEmailValidatorWithError = (): EmailValidator => {
+  class EmailValidatorStub implements EmailValidator {
+    isValid (email: string): boolean {
+      throw new Error()
+    }
+  }
+  return new EmailValidatorStub()
+}
+
+const makeSut = (): SutTypes => {
+  const emailValidatorStub = makeEmailValidator()
   const sut = new SignUpController(emailValidatorStub)
   return {
     sut,
@@ -97,12 +117,7 @@ describe('SignUp Controller', () => {
   })
 
   test('Should return 500 if an EmailValidator throws', () => {
-    class EmailValidatorStub implements EmailValidator {
-      isValid (email: string): boolean {
-        throw new Error('any_error')
-      }
-    }
-    const emailValidatorStub = new EmailValidatorStub()
+    const emailValidatorStub = makeEmailValidatorWithError()
     const sut = new SignUpController(emailValidatorStub)
 
     const httpRequest = {

@@ -1,12 +1,11 @@
+
+import { MissingParamError, InvalidParamError, ServerError } from '../../errors'
 import { SignUpController } from './signUp'
-import { EmailValidator } from '../contracts'
-import { MissingParamError, InvalidParamError, ServerError } from '../errors'
-import { AccountModel } from '../../domain/models/account'
-import { AddAccount, AddAccountDTO } from '../../domain/useCases/addAccount'
+import { EmailValidator, AddAccount, AddAccountDTO, AccountModel } from './signUp.contracts'
 
 // testar comportamentos da classe SignUpController
-// testar dependências da classe SignUpController (emailValidator)
-// testar integração da classe SignUpController com as dependências (emailValidator)
+// testar dependências da classe SignUpController (emailValidator, addAccount)
+// testar integração da classe SignUpController com as dependências (emailValidator, addAccount)
 
 // SOLID used: S I D
 // Patterns user: factory

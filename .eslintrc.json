@@ -16,6 +16,10 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }]
+        "camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }],
+        "@typescript-eslint/indent": [
+            "error",
+            2
+        ]
     }
 }
